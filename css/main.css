@@ -1,0 +1,18 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.pg-header {
+  padding-top: 20px;
+}
+
+.pg-searchbox {
+  padding: 25px 0px;
+}
+
+#user-chart svg {
+  border: 1px solid #A0A0A0;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angel.co Simple Search Statistics</title>
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css">
+  <link type="image/svg+xml" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.svg">
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+  <link type="text/css" rel="stylesheet" href="css/chart.css">
+  <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body id="home">
+
+  <div class="container">
+    <div class="row pg-header text-center">
+      <div class="col-md-12 col-sm-12">
+        <h2>AngelList Simple Search Stats</h2>
+      </div>
+    </div>
+    
+    <div class="row pg-searchbox text-center">
+      <div class="col-md-12 col-sm-12">
+        
+        <!-- Form to search for users -->
+        <form id="search-form" class="navbar-form">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" id="search-input" class="form-control input-lg" placeholder="Search users on AngelList...">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+              </span>
+            </div>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+    
+    <div class="row pg-chartbox text-center">
+      <div class="col-md-12 col-sm-12">
+        <div id="user-chart">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/chart.js"></script>
+</body>
+</html>

@@ -5,12 +5,46 @@ var maxResults = 5;
 // Data structure to store letter frequencies.
 var metric;
 
+// Set up the data structure to collect the graph data.
+function setUpMetric() {
+  var chars = "abcdefghijklmnopqrstuvwxyz".split("");
+  chars.push("others");
+  var zeros = _.map(_.range(0, chars.length), _.constant(0));
+  metric = _.object(chars, zeros);
+}
+
+// Determine the frequency of characters in a given string.
+function strFrequency(str) {
+  _.each(str, function(chr, ii) {
+    // If the character is a KEY in the metric, then increment the object with the KEY.
+    var c = chr.toLowerCase();
+    if(_.has(metric, c))
+      metric[c] += 1;
+    else
+      metric["others"] += 1;
+    });
+}
+
+// Create a chart displaying the frequency data.
+function createChart() {
+}
+
 // Iterate through a list of User objects. 
 // Gather data on recurring letters.
 // Make Graph.
-function handleResults(userList) {
+function handleResults(userList) { 
   console.log(userList);
   window.a = userList;
+  // Setup an empty data structure.
+  setUpMetric();
+  
+  // Iterate through the list of users.
+  _.each(userList, function(usr, i) {
+    // Collect character frequency of a user's name.
+    strFrequency(usr.name);
+  });
+  
+  createChart();
 }
 
 // Ajax call to the AngelList API.

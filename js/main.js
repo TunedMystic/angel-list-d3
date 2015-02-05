@@ -25,26 +25,51 @@ function strFrequency(str) {
     });
 }
 
+// Show a "No Results" message.
+function noResults() {
+  $("#user-chart").empty();
+  $("<h2>")
+    .text("Oops! No results to show.")
+    .addClass("no-results")
+    .addClass("text-muted")
+    .appendTo("#user-chart");
+}
+
 // Create a chart displaying the frequency data.
 function createChart() {
+  $("#user-chart").empty();
+  // Format the data so d3 will understand.
+  var metricData = _.map(metric, function(val, key) {
+    return {
+      'letter': key,
+      'frequency': val
+    };
+  });
+  // Make a bar graph based on collected data.
+  makeD3Chart(metricData);
 }
 
 // Iterate through a list of User objects. 
 // Gather data on recurring letters.
 // Make Graph.
 function handleResults(userList) { 
-  console.log(userList);
-  window.a = userList;
   // Setup an empty data structure.
   setUpMetric();
   
-  // Iterate through the list of users.
-  _.each(userList, function(usr, i) {
-    // Collect character frequency of a user's name.
-    strFrequency(usr.name);
-  });
-  
-  createChart();
+  if(!_.isEmpty(userList)) {
+    // Slice the results array.
+    var userListSlice = userList.slice(0, maxResults);
+    // Iterate through the list of users.
+    _.each(userListSlice, function(usr, i) {
+      // Collect character frequency of a user's name.
+      strFrequency(usr.name);
+    });
+    
+    createChart();
+  }
+  else {
+    noResults();
+  }
 }
 
 // Ajax call to the AngelList API.
@@ -59,12 +84,8 @@ function searchUsers(q) {
       "query": q
     },
     success: function(data, status) {
-      console.log("Success!!");
-      window.d = data;
     },
     error: function(data, status) {
-      console.log("Error!!");
-      window.d = data;
     }
   });
 }
@@ -76,7 +97,6 @@ $(document).ready(function() {
     e.preventDefault();
     // Get text box value.
     var searchQuery = $("#search-input").val();
-    console.log("query is " + searchQuery);
     // Ajax call to search url.
     searchUsers(searchQuery);
   });
